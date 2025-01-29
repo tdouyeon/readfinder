@@ -1,6 +1,13 @@
 import { parseXML } from "./xmlParser";
 const cheerio = require("cheerio");
 
+interface BookItem {
+  title: string;
+  description: string;
+  rights: string;
+  category: string;
+}
+
 function extractTextFromHTML(htmlString: string) {
   const $ = cheerio.load(htmlString); // cheerio로 HTML을 파싱
   return $("span")
@@ -26,7 +33,7 @@ export const fetchData = async () => {
     if (responseText) {
       const parseData = await parseXML(responseText);
       const body = parseData.response.body[0];
-      const data = body.items[0].item.map((item: any) => ({
+      const data = body.items[0].item.map((item: BookItem) => ({
         title: item.title[0],
         description: extractTextFromHTML(item.description[0]),
         rights: item.rights ? item.rights[0] : "미상",
