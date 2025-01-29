@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const defaultTheme = require("tailwindcss/defaultTheme"); // Tailwind CSS의 기본 값들을 덮어쓰지 않고 추가하거나 수정할 때 사용
 
 export default {
   content: [
@@ -11,6 +12,9 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+      },
+      fontFamily: {
+        SCDream4: ["SCDream4", ...defaultTheme.fontFamily.sans],
       },
     },
   },
