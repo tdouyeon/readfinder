@@ -5,7 +5,7 @@ function extractTextFromHTML(htmlString: string) {
   const $ = cheerio.load(htmlString); // cheerio로 HTML을 파싱
   return $("span")
     .map((i: number, el: string) => $(el).text())
-    .get()
+    .get() // jQuery 객체를 일반적인 배열 형태로 변환합니다.
     .join("");
 }
 
