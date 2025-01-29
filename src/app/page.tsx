@@ -34,7 +34,7 @@ export default async function Home() {
         </div>
       </div>
       <div className="bg-[#FBFBFB] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pl-12 pr-12 pt-5">
-        {books.map((book: BookItem, index) => {
+        {books?.map((book: BookItem, index) => {
           return (
             <div key={index}>
               <Link
