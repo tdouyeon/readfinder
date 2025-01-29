@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { fetchData } from "./lib/dataFetcher";
 
 interface BookItem {
@@ -35,15 +36,28 @@ export default async function Home() {
       <div className="bg-[#FBFBFB] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 pl-12 pr-12 pt-5">
         {books.map((book: BookItem, index) => {
           return (
-            <div key={index} className="rounded-lg p-6 hover:scale-105">
-              <div className="bg-[#2d6b60] rounded-lg text-sm p-2 text-white mb-3">
-                {book.category}
-              </div>
-              <h2 className="font-semibold text-gray-800">{book.title}</h2>
-              <p className="text-sm mt-2 text-gray-700">
-                <span className="font-semibold">글쓴이 | </span>
-                <span className="font-semibold"> {book.rights}</span>
-              </p>
+            <div key={index}>
+              <Link
+                href={{
+                  pathname: "/detail",
+                  query: {
+                    category: book.category,
+                    title: book.title,
+                    rights: book.rights,
+                    description: book.description,
+                  },
+                }}
+                className="rounded-lg p-6 hover:scale-105"
+              >
+                <div className="bg-[#2d6b60] rounded-lg text-sm p-2 text-white mb-3">
+                  {book.category}
+                </div>
+                <h2 className="font-semibold text-gray-800">{book.title}</h2>
+                <p className="text-sm mt-2 text-gray-700">
+                  <span className="font-semibold">글쓴이 | </span>
+                  <span className="font-semibold"> {book.rights}</span>
+                </p>
+              </Link>
             </div>
           );
         })}
